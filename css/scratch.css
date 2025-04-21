@@ -1,0 +1,191 @@
+/* Body: Set the background image and text color */
+body {
+    background-image: url('../assets/img/gold vs dollar.png'); /* Correct relative path */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    color: white; /* Default text color */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 20px;
+    margin: 0;
+    text-align: left; /* Ensure text is aligned to the left */
+}
+
+/* Ensure the container for the list is aligned to the left and fits content */
+.common.mainbody {
+    max-width: 600px; /* Limit the width of the content */
+    margin-left: 0; /* Align content to the left */
+    padding-left: 20px; /* Add some padding on the left */
+}
+
+/* Header section: Flexbox for centering content */
+.header {
+    height: 10vh; /* Take up full viewport height */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+    color: white;
+    display: flex;
+    flex-direction: column; /* Stack header and subheader vertically */
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+    text-align: center; /* Ensure text is centered */
+    padding: 0 20px; /* Optional: adds padding to the sides */
+}
+
+/* Style for the header text (main heading) */
+.header h1 {
+    margin: 0; /* Remove default margin */
+    font-size: 2.5rem; /* Adjust size as needed */
+    font-weight: bold;
+}
+
+/* Style for the subheader (h2) */
+.header h2 {
+    margin: 10px 0 0 0; /* Adds space below the header */
+    font-size: 1.5rem; /* Adjust size as needed */
+}
+
+/* Navigation bar styling */
+nav {
+    background-color: black;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1000; /* Keeps the nav on top */
+}
+
+nav a {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: goldenrod;
+    padding: 10px;
+}
+
+nav a:hover {
+    background-color: #ccc;
+}
+
+/* Style for the ordered list */
+ol {
+    font-size: 16px;
+    color: gold; /* Gold text color for the ordered list */
+    padding-left: 0; /* No padding on the left for the ordered list itself */
+    margin-left: 0; /* No margin on the left */
+    list-style-position: inside; /* Numbers appear inside the list item */
+    display: flex; /* Add Flexbox for layout */
+    flex-direction: column; /* Stack the items vertically */
+    align-items: flex-start; /* Align list items to the left */
+}
+
+/* Style for list items with gold color and transparent black background */
+.coin-item {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center the content horizontally */
+    margin-bottom: 20px; /* Space between items */
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+    padding: 10px;
+    border-radius: 5px; /* Optional: rounds the corners of the background */
+    width: fit-content; /* Ensures background fits content */
+}
+
+/* Style for the coin content (text and image) */
+.coin-content {
+    display: flex;
+    flex-direction: column; /* Stack the image and text vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Ensure text is centered */
+    margin-bottom: 10px; /* Space between the image and the coin name */
+}
+
+/* Style for the images above the text */
+.coin-img {
+    width: 200px; /* Set a reasonable width for the image */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Space between the image and text */
+    border-radius: 5px; /* Optional: rounds the corners of the image */
+}
+
+/* Ensure unordered list is in a column below the coin name */
+ol li ul {
+    padding-left: 20px; /* Adds some indentation for nested unordered lists */
+    list-style-type: disc; /* Adds bullet points to unordered lists */
+    display: block; /* Ensures the unordered list is displayed in a column */
+    text-align: left; /* Aligns the list to the left */
+}
+
+/* Unordered list items with gold color */
+ol li ul li {
+    color: gold; /* Gold text color for unordered list items */
+    display: block; /* Ensures each list item is displayed in a column */
+}
+
+/* Right Section with Transparent Background */
+.right-section {
+    position: fixed; /* Fixed to stay on the right side when scrolling */
+    right: 0;
+    top: 50%; /* Vertically center the content */
+    transform: translateY(-50%); /* Adjust to exactly center vertically */
+    width: 30%; /* You can adjust this to set how wide you want the box */
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+    color: gold; /* Gold text color */
+    padding: 20px;
+    border-radius: 10px; /* Optional: rounds the corners of the background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optional: adds some shadow for a more elevated look */
+    display: flex;
+    flex-direction: column; /* Stack paragraph and video vertically */
+    align-items: center; /* Horizontally center content */
+    max-height: 80%; /* Prevents the container from stretching too tall */
+    overflow: auto; /* Adds scrollbars if content exceeds max-height */
+}
+
+/* Style for the header of the right section */
+.right-section h2 {
+    font-size: 1.8rem; /* Adjust header size */
+    font-weight: bold;
+    margin-bottom: 15px; /* Space below the header */
+}
+
+/* Style for the paragraph inside the right section */
+.right-section p {
+    font-size: 1rem; /* Adjust font size */
+    line-height: 1.5;
+    text-align: justify; /* Justify the text for better readability */
+    margin-bottom: 20px; /* Space below the paragraph */
+    max-height: 70%; /* Limits the paragraph height */
+    overflow: hidden; /* Hides any overflow */
+    word-wrap: break-word; /* Ensures long words break correctly */
+}
+
+/* Optional: Style the iframe (video) */
+.right-section iframe {
+    width: 100%; /* Ensure the video takes up the full width of the container */
+    height: 315px; /* Set a fixed height for the video */
+}
+/* Go to Top link at the bottom middle of the page */
+.go-to-top {
+    position: fixed; /* Fix the link at the bottom of the page */
+    bottom: 20px; /* Position it 20px from the bottom */
+    left: 50%; /* Position it 50% from the left to center it */
+    transform: translateX(-50%); /* Exactly center the link */
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
+    color: gold; /* Gold text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+/* Add hover effect to the Go to Top link */
+.go-to-top:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Darker background on hover */
+}
