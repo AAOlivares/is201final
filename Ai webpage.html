@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Quote Game</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center;     /* Vertically center the content */
+            flex-direction: column;
+            min-height: 100vh;       /* Full height for body */
+            padding: 0;              /* Remove any default padding */
+            margin: 0;               /* Remove any default margin */
+            text-align: center;      /* Ensures text is centered inside the container */
+        }
+
+        /* Main container */
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 500px; /* Set max width for responsiveness */
+        }
+
+        /* Quote styling */
+        #quote {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Options buttons */
+        .option-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .option-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Feedback message */
+        #feedback {
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        /* Next button styling */
+        #next-btn {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        #next-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Guess the Quote!</h1>
+        <p id="quote">"The only way to do great work is to love what you do."</p>
+
+        <div id="options">
+            <button class="option-btn" onclick="checkAnswer('Steve Jobs')">Steve Jobs</button>
+            <button class="option-btn" onclick="checkAnswer('Albert Einstein')">Albert Einstein</button>
+            <button class="option-btn" onclick="checkAnswer('Isaac Newton')">Isaac Newton</button>
+            <button class="option-btn" onclick="checkAnswer('Winston Churchill')">Winston Churchill</button>
+        </div>
+
+        <div id="feedback"></div>
+        <button id="next-btn" onclick="generateQuote()">Next Quote</button>
+    </div>
+
+    <script>
+        // Array of quotes and their respective authors
+        const quotes = [
+            {
+                quote: "The only way to do great work is to love what you do.",
+                author: "Steve Jobs",
+                options: ["Steve Jobs", "Albert Einstein", "Isaac Newton", "Winston Churchill"]
+            },
+            {
+                quote: "Life is what happens when you're busy making other plans.",
+                author: "John Lennon",
+                options: ["John Lennon", "Albert Einstein", "Steve Jobs", "Mark Twain"]
+            },
+            {
+                quote: "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+                author: "Ralph Waldo Emerson",
+                options: ["Ralph Waldo Emerson", "Albert Einstein", "Isaac Newton", "Winston Churchill"]
+            },
+            {
+                quote: "The curious task of economics is to demonstrate to men how little they really know about what they imagine they can design.",
+                author: "F.A. Hayek",
+                options: ["F.A. Hayek", "John Maynard Keynes", "Adam Smith", "Milton Friedman"]
+            },
+            {
+                quote: "I think, therefore I am.",
+                author: "René Descartes",
+                options: ["René Descartes", "Immanuel Kant", "Friedrich Nietzsche", "Socrates"]
+            },
+            {
+                quote: "In the middle of difficulty lies opportunity.",
+                author: "Albert Einstein",
+                options: ["Albert Einstein", "Isaac Newton", "Charles Darwin", "Galileo Galilei"]
+            },
+            {
+                quote: "The only thing we have to fear is fear itself.",
+                author: "Franklin D. Roosevelt",
+                options: ["Franklin D. Roosevelt", "Winston Churchill", "Theodore Roosevelt", "Abraham Lincoln"]
+            },
+            {
+                quote: "Those who cannot remember the past are condemned to repeat it.",
+                author: "George Santayana",
+                options: ["George Santayana", "Friedrich Nietzsche", "Karl Marx", "William Shakespeare"]
+            },
+            {
+                quote: "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+                author: "Ralph Waldo Emerson",
+                options: ["Ralph Waldo Emerson", "Walt Whitman", "Henry David Thoreau", "Mark Twain"]
+            },
+            {
+                quote: "An eye for an eye only ends up making the whole world blind.",
+                author: "Mahatma Gandhi",
+                options: ["Mahatma Gandhi", "Nelson Mandela", "Martin Luther King Jr.", "Dalai Lama"]
+            }
+        ];
+
+        // Function to generate a random quote
+        function generateQuote() {
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById("quote").textContent = `"${randomQuote.quote}"`;
+
+            // Shuffle the options to randomize their order
+            const shuffledOptions = randomQuote.options.sort(() => Math.random() - 0.5);
+
+            // Update the options buttons with the shuffled options
+            const buttons = document.querySelectorAll(".option-btn");
+            buttons.forEach((button, index) => {
+                button.textContent = shuffledOptions[index];
+                button.onclick = () => checkAnswer(shuffledOptions[index], randomQuote.author);
+            });
+
+            // Clear any previous feedback
+            document.getElementById("feedback").textContent = "";
+        }
+
+        // Function to check the user's answer
+        function checkAnswer(selectedAuthor, correctAuthor) {
+            const feedback = document.getElementById("feedback");
+            if (selectedAuthor === correctAuthor) {
+                feedback.textContent = "Correct!";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = `Incorrect! The correct answer is ${correctAuthor}.`;
+                feedback.style.color = "red";
+            }
+        }
+
+        // Initialize the first quote
+        generateQuote();
+    </script>
+
+</body>
+</html>
